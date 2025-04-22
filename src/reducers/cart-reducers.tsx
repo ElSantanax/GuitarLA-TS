@@ -17,3 +17,39 @@ export const initialState = {
     data: db,
     cart: []
 }
+
+export const cartReducers = (
+    state: CartState = initialState,
+    action: CartActions
+) => {
+
+    if (action.type === 'add-to-cart') {
+        return {
+            ...state
+        }
+    }
+
+    if (action.type === 'remove-from-cart') {
+        return {
+            ...state
+        }
+    }
+
+    if (action.type === 'decrease-quantity') {
+        return {
+            ...state
+        }
+    }
+
+    if (action.type === 'increase-quantity') {
+        return {
+            ...state
+        }
+    }
+
+    if (action.type === 'clear-cart') {
+        return {
+            ...state
+        }
+    }
+}
