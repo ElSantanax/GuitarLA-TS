@@ -6,7 +6,7 @@ import { cartReducers, initialState } from "./reducers/cart-reducers"
 
 function App() {
 
-  const { cart, addToCart, removeFromCart, decreaseQuantity, increaseQuantity, clearCart, isEmpty, cartTotal } = useCart()
+  const { cart, removeFromCart, decreaseQuantity, increaseQuantity, clearCart, isEmpty, cartTotal } = useCart()
 
   const [state, dispatch] = useReducer(cartReducers, initialState)
 
@@ -30,7 +30,7 @@ function App() {
             <Guitar
               key={guitar.id}
               guitar={guitar}
-              addToCart={addToCart}
+              dispatch={dispatch}
             />
           ))}
 
