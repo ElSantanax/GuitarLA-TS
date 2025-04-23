@@ -1,25 +1,21 @@
 import { useReducer } from "react"
 import Guitar from "./components/Guitar"
 import Header from "./components/Header"
-import { useCart } from './hooks/useCart'
 import { cartReducers, initialState } from "./reducers/cart-reducers"
 
 function App() {
 
-  const { clearCart } = useCart()
   const [state, dispatch] = useReducer(cartReducers, initialState)
 
   return (
     <>
       <Header
-        cart={state.cart}
+        cart={state?.cart}
         dispatch={dispatch}
-        clearCart={clearCart}
       />
 
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
-
         <div className="row mt-5">
           {state?.data.map((guitar) => (
             <Guitar
@@ -28,7 +24,6 @@ function App() {
               dispatch={dispatch}
             />
           ))}
-
         </div>
       </main>
 

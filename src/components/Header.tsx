@@ -5,13 +5,11 @@ import type { CartActions } from "../reducers/cart-reducers"
 type HeaderProps = {
     cart: CartItem[]
     dispatch: React.Dispatch<CartActions>
-    clearCart: () => void
 }
 
 export default function Header({
     cart,
     dispatch,
-    clearCart
 }: HeaderProps) {
 
     // State Derivado
@@ -32,7 +30,6 @@ export default function Header({
                             className="carrito"
                         >
                             <img className="img-fluid" src="/img/carrito.png" alt="imagen carrito" />
-
                             <div id="carrito" className="bg-white p-3">
                                 {isEmpty ? (
                                     <p className="text-center">El carrito esta vacio</p>
@@ -101,10 +98,9 @@ export default function Header({
                                         <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
                                     </>
                                 )}
-
                                 <button
                                     className="btn btn-dark w-100 mt-3 p-2"
-                                    onClick={clearCart}
+                                    onClick={() => dispatch({ type: 'clear-cart' })}
                                 >
                                     Vaciar Carrito
                                 </button>
