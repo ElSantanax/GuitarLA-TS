@@ -31,7 +31,7 @@ export const cartReducers = (
         const itemExists = state.cart.find(guitar => guitar.id === action.payload.item.id)
 
         let updatedCart: CartItem[] = []
-        if (itemExists) { // existe en el carrito
+        if (itemExists) {
             updatedCart = state.cart.map(item => {
                 if (item.id === action.payload.item.id) {
                     if (item.quantity < MAX_ITEMS) {
@@ -47,7 +47,6 @@ export const cartReducers = (
             const newItem: CartItem = { ...action.payload.item, quantity: 1 }
             updatedCart = [...state.cart, newItem]
         }
-
         return {
             ...state,
             cart: updatedCart
@@ -55,8 +54,10 @@ export const cartReducers = (
     }
 
     if (action.type === 'remove-from-cart') {
+        const updatedCart = state.cart.filter(item => item.id !== action.payload.id)
         return {
-            ...state
+            ...state,
+            cart: updatedCart
         }
     }
 
