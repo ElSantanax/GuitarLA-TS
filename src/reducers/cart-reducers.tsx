@@ -13,7 +13,7 @@ export type CartState = {
     cart: CartItem[]
 }
 
-export const initialState = {
+export const initialState: CartState = {
     data: db,
     cart: []
 }
@@ -24,7 +24,7 @@ const MAX_ITEMS = 5
 export const cartReducers = (
     state: CartState = initialState,
     action: CartActions
-) => {
+): CartState => {
     // Agregar al carrito
     if (action.type === 'add-to-cart') {
         const itemExists = state.cart.find(guitar => guitar.id === action.payload.item.id)
@@ -100,4 +100,6 @@ export const cartReducers = (
             cart: []
         }
     }
+
+    return state
 }

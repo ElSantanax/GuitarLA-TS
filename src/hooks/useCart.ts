@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import type { CartItem } from '../types'
 
 export const useCart = () => {
@@ -10,9 +10,6 @@ export const useCart = () => {
 
     const [cart] = useState(initialCart)
 
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart))
-    }, [cart])
 
     return {
         cart
