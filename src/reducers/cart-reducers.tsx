@@ -25,11 +25,9 @@ export const cartReducers = (
     state: CartState = initialState,
     action: CartActions
 ) => {
-
+    // Agregar al carrito
     if (action.type === 'add-to-cart') {
-
         const itemExists = state.cart.find(guitar => guitar.id === action.payload.item.id)
-
         let updatedCart: CartItem[] = []
         if (itemExists) {
             updatedCart = state.cart.map(item => {
@@ -53,6 +51,7 @@ export const cartReducers = (
         }
     }
 
+    // Remover del carrito
     if (action.type === 'remove-from-cart') {
         const updatedCart = state.cart.filter(item => item.id !== action.payload.id)
         return {
@@ -61,14 +60,25 @@ export const cartReducers = (
         }
     }
 
+    // Decremento de cantidad 
     if (action.type === 'decrease-quantity') {
+        const updatedCart = state.cart.map(item => {
+            if (item.id === action.payload.id && item.quantity > MIN_ITEMS) {
+                return {
+                    ...item,
+                    quantity: item.quantity - 1
+                }
+            }
+            return item
+        })
         return {
-            ...state
+            ...state,
+            cart: updatedCart
         }
     }
 
+    // Incremento de cantidad
     if (action.type === 'increase-quantity') {
-
         const updatedCart = state.cart.map(item => {
             if (item.id === action.payload.id && item.quantity < MAX_ITEMS) {
                 return {
